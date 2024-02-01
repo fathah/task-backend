@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../../src/Utils/HttpRequestHandler.php';
-require_once '../../../src/Controller/Authentication.php';
+require_once '../../src/Utils/HTTPHandler.php';
+require_once '../../src/Controller/Authentication.php';
 
 try {
     HttpRequestHandler::validateRequestMethod('POST');

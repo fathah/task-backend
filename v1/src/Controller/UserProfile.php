@@ -1,18 +1,22 @@
 <?php
 
-require_once '../Auth/JwtHandler.php';
-require_once '../Model/User.php';
-require_once '../Includes/DB.php';
+
+$currentDir = dirname(__FILE__);
+
+include $currentDir.'../../Includes/DB.php';
+include $currentDir.'../../Model/User.php';
+
+
 
 class UserProfileEndpoint {
     public function getUserProfile($token) {
         try {
             $userData = JwtHandler::validateToken($token);
-
+            
             if (!$userData) {
                 return ['success' => false, 'message' => 'Invalid or expired token'];
             }
-            $userProfile = $this->fetchUserProfile($userData['id']);
+            $userProfile = $this->fetchUserProfile($userData->id);
 
             if ($userProfile) {
                 return ['success' => true, 'data' => $userProfile];
@@ -27,7 +31,7 @@ class UserProfileEndpoint {
     private function fetchUserProfile($id) {
         global $pdo;
 
-        $query = "SELECT id, email, role FROM users WHERE id = :id";
+        $query = "SELECT usr_id, usr_email, usr_role, usr_created_at FROM users WHERE usr_id = :id";
 
         try {
             $stmt = $pdo->prepare($query);

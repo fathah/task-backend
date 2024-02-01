@@ -1,7 +1,7 @@
 <?php
 
 $currentDir = dirname(__FILE__);
-require_once $currentDir . '/Database/DatabaseConnector.php';
+require_once $currentDir . '../../Database/DatabaseConnector.php';
 
 $host = 'localhost';
 $username = 'root';

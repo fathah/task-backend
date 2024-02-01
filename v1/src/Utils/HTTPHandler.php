@@ -6,7 +6,9 @@ class HttpRequestHandler {
 
         if ($requestMethod !== $expectedMethod) {
             header("HTTP/1.1 405 Method Not Allowed");
-            header("Allow: $expectedMethod");
+            header('Content-Type: application/json');
+            http_response_code(405);
+            echo json_encode(['success' => false, 'message' => 'Method Not Allowed']);
             exit;
         }
     }

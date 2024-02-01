@@ -1,14 +1,15 @@
 <?php
 
-// Include necessary files and classes
-include '../Includes/DB.php';
-include '../Auth/PasswordHasher.php';
-include '../Model/User.php';
+$currentDir = dirname(__FILE__);
+
+include $currentDir.'../../Includes/DB.php';
+include $currentDir.'../../Auth/PasswordHasher.php';
+include $currentDir.'../../Model/User.php';
 
 class RegistrationEndpoint {
     public function registerUser($email, $password, $role) {
-        if ( empty($password) || empty($email)) {
-            return ['success' => false, 'message' => 'Incomplete registration information'];
+        if ( empty($password) || empty($email) || empty($role)) {
+            return ['success' => false, 'message' => 'Missing Parameters'];
         }
 
         $hashedPassword = PasswordHasher::hashPassword($password);
@@ -28,14 +29,17 @@ class RegistrationEndpoint {
     private function saveUserToDatabase(User $user) {
         global $pdo;
      
-        $query = "INSERT INTO users (email, password, role) VALUES ( :email, :password, :role)";
+        $query = "INSERT INTO users(usr_email, usr_password, usr_role) VALUES (:email, :password, :role)";
 
         try {
-            
+            $role = $user->getRole();
+            $email = $user->getEmail();
+            $pass = $user->getPassword();
+
             $stmt = $pdo->prepare($query);
-            $stmt->bindParam(':email', $user->getEmail());
-            $stmt->bindParam(':password', $user->getPassword());
-            $stmt->bindParam(':role', $user->getRole());
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $pass);
+            $stmt->bindParam(':role', $role);
 
             return $stmt->execute();
         } catch (Exception $e) {

@@ -1,13 +1,17 @@
 <?php
 
-require_once 'JwtHandler.php';
+include dirname(__FILE__).'./JwtHandler.php';
 
 class AuthMiddleware {
-    public static function validateToken() {
-        $token = self::extractTokenFromHeaders();
+   
 
+    
+    public static function validateToken() {
+        $token = self::extractHeaderToken();
+        header('Content-Type: application/json');
         if (!$token) {
             http_response_code(401); // Unauthorized
+           
             echo json_encode(['success' => false, 'message' => 'Missing token']);
             exit;
         }
@@ -27,7 +31,7 @@ class AuthMiddleware {
         }
     }
 
-    private static function extractTokenFromHeaders() {
+    public static function extractHeaderToken() {
         $headers = apache_request_headers();
 
         if (isset($headers['Authorization'])) {
@@ -41,6 +45,8 @@ class AuthMiddleware {
 
         return null;
     }
+
+    
 }
 
 ?>

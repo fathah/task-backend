@@ -1,9 +1,14 @@
 <?php
 
-require_once '../Auth/JwtHandler.php';
-require_once '../Auth/PasswordHasher.php';
-require_once '../Model/User.php';
-require_once '../Includes/DB.php'; 
+$currentDir = dirname(__FILE__);
+
+
+include $currentDir.'../../Includes/DB.php';
+include $currentDir.'../../Auth/PasswordHasher.php';
+include $currentDir.'../../Model/User.php';
+include $currentDir.'../../Auth/JwtHandler.php';
+
+
 
 class AuthenticationEndpoint {
     public function authenticateUser($email, $password) {
@@ -14,12 +19,12 @@ class AuthenticationEndpoint {
             }
 
            
-            if (PasswordHasher::verifyPassword($password, $user['password'])) {
+            if (PasswordHasher::verifyPassword($password, $user['usr_password'])) {
                 // Password is correct, generate JWT token
                 $token = JwtHandler::generateToken([
-                    'id' => $user['id'],
-                    'email' => $user['email'],
-                    'role' => $user['role']
+                    'id' => $user['usr_id'],
+                    'email' => $user['usr_email'],
+                    'role' => $user['usr_role']
                 ]);
 
                 return ['success' => true, 'token' => $token];
@@ -34,7 +39,7 @@ class AuthenticationEndpoint {
     private function getUserByEmail($email) {
         global $pdo;
 
-        $query = "SELECT * FROM users WHERE email = :email";
+        $query = "SELECT * FROM users WHERE usr_email = :email";
 
         try {
             $stmt = $pdo->prepare($query);

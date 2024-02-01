@@ -1,7 +1,6 @@
 <?php
 
-$currentDir = dirname(__FILE__);
-require_once $currentDir.'../../../packages.php'; 
+require_once dirname(__FILE__).'../../../../packages.php'; 
 
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -30,7 +29,7 @@ class JwtHandler {
     public static function validateToken($token) {
         try {
 
-            $decoded = JWT::decode($token, new Key(self::$secret, 'HS256'), $headers = new stdClass());
+            $decoded = JWT::decode($token, new Key(self::$secret, 'HS256'));
 
             return $decoded->data;
         } catch (\Exception $e) {

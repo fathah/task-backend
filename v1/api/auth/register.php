@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../src/Utils/HttpRequestHandler.php';
+require_once '../../src/Utils/HTTPHandler.php';
 require_once '../../src/Controller/Registration.php';
 
 try {
@@ -12,7 +12,7 @@ try {
 
     $registrationEndpoint = new RegistrationEndpoint();
 
-    $result = $registrationEndpoint->registerUser($username, $password, $email, $role);
+    $result = $registrationEndpoint->registerUser(  $email, $password, $role);
 
     if ($result['success']) {
         http_response_code(201); 
