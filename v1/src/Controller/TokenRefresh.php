@@ -1,7 +1,5 @@
 <?php
 
-// Include necessary files and classes
-require_once '../Auth/JwtHandler.php';
 
 class TokenRefresh {
     public function refreshToken($oldToken) {

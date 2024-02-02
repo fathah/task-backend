@@ -1,0 +1,49 @@
+v1/
+│
+├── api/
+│   ├── auth/
+│   │   ├── login.php
+│   │   ├── register.php
+│   │   └── refresh-token.php
+│   │
+│   └── user/
+│       └── profile.php
+|
+├── src/
+│   ├── Auth/
+│   │   ├── AuthMiddleware.php
+│   │   ├── JwtHandler.php
+│   │   └── PasswordHasher.php
+│   │
+│   ├── Database/
+│   │   └── DatabaseConnector.php
+│   │
+│   ├── Controller/
+│   │   ├── Registration.php
+│   │   ├── Authentication.php
+│   │   ├── UserProfile.php
+│   │   └── TokenRefresh.php
+│   │
+│   ├── Model/
+│   │   └── User.php
+│   │
+│   ├── Util/
+│   │   └── HTTPHandler.php
+|
+│   ├── Includes/
+│   │   ├── DB.php
+│   │   └── Header.php
+│   │
+│   └── index.php
+│
+├── tests/
+│   ├── AuthTest.php
+│   ├── DatabaseTest.php
+│   ├── EndpointTest.php
+│   └── UtilTest.php
+│
+├── .gitignore
+├── README.md
+├── index.php
+├── middleware.php
+└── composer.json

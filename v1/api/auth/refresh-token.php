@@ -1,23 +1,23 @@
 <?php
 
-require_once '../../../src/Utils/HttpRequestHandler.php';
-require_once '../../../src/Auth/AuthMiddleware.php';
-require_once '../../../src/Controller/TokenRefresh.php';
+require_once '../../src/Utils/HTTPHandler.php';
+require_once '../../src/Controller/TokenRefresh.php';
+require_once '../../src/Auth/AuthMiddleware.php';
+
+
 
 try {
-    // Validate the JWT token using the AuthMiddleware
     AuthMiddleware::validateToken();
+
 
     HttpRequestHandler::validateRequestMethod('POST');
 
-    $oldToken = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $currentToken = AuthMiddleware::extractHeaderToken();
 
     $tokenRefreshEndpoint = new TokenRefresh();
-
     // Refresh the token
-    $result = $tokenRefreshEndpoint->refreshToken($oldToken);
+    $result = $tokenRefreshEndpoint->refreshToken($currentToken);
 
-    // Check the token refresh result and set appropriate HTTP response code
     if ($result['success']) {
         http_response_code(200); // OK
     } else {
