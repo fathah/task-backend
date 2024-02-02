@@ -131,21 +131,21 @@ This command will execute all the test cases in the tests directory.
 ### Test Cases
 #### Authentication Endpoint
 ```bash
-vendor/bin/phpunit tests/EndpointTest.php --filter testAuthenticationEndpoint
+vendor/bin/phpunit v1/tests/EndpointTest.php --filter testAuthenticationEndpoint
 ```
 #### Registration Endpoint
 ```bash
-vendor/bin/phpunit tests/EndpointTest.php --filter testRegistrationEndpoint
+vendor/bin/phpunit v1/tests/EndpointTest.php --filter testRegistrationEndpoint
 ```
 
 #### Token Refresh Endpoint
 ```bash
-vendor/bin/phpunit tests/EndpointTest.php --filter testTokenRefreshEndpoint
+vendor/bin/phpunit v1/tests/EndpointTest.php --filter testTokenRefreshEndpoint
 ```
 
 #### User Profile Endpoint
 ```bash
-vendor/bin/phpunit tests/EndpointTest.php --filter testUserProfileEndpoint
+vendor/bin/phpunit v1/tests/EndpointTest.php --filter testUserProfileEndpoint
 ```
 
 ## Folder Structure
