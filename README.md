@@ -34,6 +34,7 @@ Detailed information about available API endpoints can be found in the [API Endp
 
 - [Overview](#overview)
 - [Installation](#installation)
+- [Environment Config](#environment-config)
 - [Database Setup](#database-setup)
 - [API Endpoints](#api-endpoints)
 - [Testing](#testing)
@@ -57,15 +58,29 @@ Provide a concise overview of your project, its purpose, and any key features. M
     composer install
     ```
 
-3. Set up your database. (Provide details or refer to the [Database Setup](#database-setup) section)
+3. Set up your database. (Refer to the [Database Setup](#database-setup) section)
 
-4. Configure your API by editing the necessary configuration files.
+4. Configure Environment Variables.
+
+5. Configure your API by editing the necessary configuration files.
+
+## Environment Config
+Secrets are stored in a `.env` file. Configure the variables as per the requirements. Following are the required variables for this project.
+
+```bash
+DB_HOST = "db_host"
+DB_USER = "db_user"
+DB_PASSWORD = "db_pass"
+DB_DATABASE = "task_db"
+JWT_SECRET = "jwt_secret_code"
+```
+
 
 ## Database Setup
 
 * Setup a MySQL database.
 * Import ([schema.sql](schema.sql)) SQL to the database.
-* Configure the credentials in `/src/Includes/DB.php`
+* Configure the credentials `.env` file.
 
 
 
