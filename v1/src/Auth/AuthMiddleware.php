@@ -8,10 +8,9 @@ class AuthMiddleware {
     
     public static function validateToken() {
         $token = self::extractHeaderToken();
-        header('Content-Type: application/json');
+       
         if (!$token) {
             http_response_code(401); // Unauthorized
-           
             echo json_encode(['success' => false, 'message' => 'Missing token']);
             exit;
         }
@@ -32,7 +31,7 @@ class AuthMiddleware {
     }
 
     public static function extractHeaderToken() {
-        $headers = apache_request_headers();
+        $headers = getHeaders();
 
         if (isset($headers['Authorization'])) {
             $authHeader = $headers['Authorization'];
@@ -47,6 +46,24 @@ class AuthMiddleware {
     }
 
     
+
+    
+}
+
+ function getHeaders() {
+    if (function_exists('apache_request_headers')) {
+        return apache_request_headers();
+    }
+
+    $headers = [];
+
+    foreach ($_SERVER as $key => $value) {
+        if (substr($key, 0, 5) === 'HTTP_') {
+            $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($key, 5)))))] = $value;
+        }
+    }
+
+    return $headers;
 }
 
 ?>
