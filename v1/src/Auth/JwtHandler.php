@@ -5,10 +5,14 @@ require_once dirname(__FILE__).'../../../../packages.php';
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-class JwtHandler {
-    private static $secret = 'bf552291-4b73-4652-9e15-ba387913ed8f'; 
+$secret = $_ENV['JWT_SECRET'];
 
+class JwtHandler {
+    
+
+   
     public static function generateToken($payload) {
+        global $secret;
         $issuedAt = time();
         $expirationTime = $issuedAt + 3600; // Token valid for 1 hour
 
@@ -19,7 +23,7 @@ class JwtHandler {
                 'exp' => $expirationTime,
                 'data' => $payload,
             ],
-            self::$secret,
+            $secret,
             'HS256'
         );
 
@@ -27,9 +31,11 @@ class JwtHandler {
     }
 
     public static function validateToken($token) {
+        global $secret;
+
         try {
 
-            $decoded = JWT::decode($token, new Key(self::$secret, 'HS256'));
+            $decoded = JWT::decode($token, new Key($secret, 'HS256'));
 
             return $decoded->data;
         } catch (\Exception $e) {

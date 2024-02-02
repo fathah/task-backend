@@ -1,12 +1,13 @@
 <?php
 
-$currentDir = dirname(__FILE__);
-require_once $currentDir . '../../Database/DatabaseConnector.php';
+$cwd2 = dirname(__FILE__);
+require_once  $cwd2 . '../../Database/DatabaseConnector.php';
 
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'task_db';
+
+$host = $_ENV['DB_HOST'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASSWORD'];
+$database = $_ENV['DB_DATABASE'];
 
 $dbConnector = new DatabaseConnector($host, $username, $password, $database);
 

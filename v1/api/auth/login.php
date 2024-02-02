@@ -1,5 +1,7 @@
 <?php
 
+require_once  '../../main.php';
+
 require_once '../../src/Utils/HTTPHandler.php';
 require_once '../../src/Controller/Authentication.php';
 
