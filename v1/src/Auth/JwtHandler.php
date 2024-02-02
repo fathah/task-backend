@@ -6,7 +6,7 @@ use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 class JwtHandler {
-    private static $secret = 'your_jwt_secret'; 
+    private static $secret = 'bf552291-4b73-4652-9e15-ba387913ed8f'; 
 
     public static function generateToken($payload) {
         $issuedAt = time();

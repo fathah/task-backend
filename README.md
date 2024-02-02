@@ -64,7 +64,7 @@ Provide a concise overview of your project, its purpose, and any key features. M
 ## Database Setup
 
 * Setup a MySQL database.
-* Import ([schema.sql](schema.sql)) SQL in the root directory of this repo.
+* Import ([schema.sql](schema.sql)) SQL to the database.
 * Configure the credentials in `/src/Includes/DB.php`
 
 
