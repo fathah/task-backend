@@ -170,12 +170,15 @@ vendor/bin/phpunit v1/tests/EndpointTest.php --filter testUserProfileEndpoint
 ## Folder Structure
 
 ```
-- /api              # API Entry Directory
-- /src              # Source code files
-- /tests            # Unit tests
-- .gitignore        # Gitignore file
-- README.md         # Project documentation
-- composer.json     # Composer configuration
+- /v1/api              # API Entry Directory
+- /v1/src              # Source code files
+- /v1/tests            # Unit tests
+- /vendor              # Composer Packages
+- .env                 # Environment variables (gitignored)
+- .gitignore           # Gitignore file
+- README.md            # Project documentation
+- composer.json        # Composer configuration
+- packages.php         # Packages Inclusion Header File
 ```
 
 ## Disclaimer
