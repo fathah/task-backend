@@ -85,6 +85,10 @@ JWT_SECRET = "jwt_secret_code"
 
 
 ## API Endpoints
+Setup the local/prod environement and access the api through `/api` route.
+```
+http(s)://{baseurl}/v1/{api_endpoint}
+```
 ### Authentication
 
 - **Register User**
@@ -166,13 +170,12 @@ vendor/bin/phpunit v1/tests/EndpointTest.php --filter testUserProfileEndpoint
 ## Folder Structure
 
 ```
+- /api              # API Entry Directory
 - /src              # Source code files
 - /tests            # Unit tests
-- /vendor           # Composer dependencies
 - .gitignore        # Gitignore file
 - README.md         # Project documentation
 - composer.json     # Composer configuration
-- index.php         # Main entry point
 ```
 
 ## Disclaimer
